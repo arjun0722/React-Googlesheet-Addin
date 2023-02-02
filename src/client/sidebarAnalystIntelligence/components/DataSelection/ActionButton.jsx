@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, func, string } from 'prop-types';
+import { arrayOf, func, string, bool } from 'prop-types';
 
 import {
   BUTTON_ACTION,
@@ -8,7 +8,11 @@ import {
   MAXIMUM_NUMBER_TO_DISABLE_BUTTON,
 } from '../../Config/constant';
 
-function ActionButton({ handleActionButtonClick, selectedSources }) {
+function ActionButton({
+  handleActionButtonClick,
+  selectedSources,
+  loadingFieldsData,
+}) {
   return (
     <div className="action-buttons">
       <button
@@ -31,6 +35,7 @@ function ActionButton({ handleActionButtonClick, selectedSources }) {
         data-bs-target="#exampleModal"
         className="btn btn-outline-primary action-button"
         disabled={
+          loadingFieldsData ||
           !(selectedSources.length === MAXIMUM_NUMBER_TO_DISABLE_BUTTON)
         }
         data-toggle="tooltip"
@@ -66,13 +71,15 @@ function ActionButton({ handleActionButtonClick, selectedSources }) {
 }
 
 ActionButton.propTypes = {
-  handleActionButtonClick: func,
+  handleActionButtonClick: bool,
+  loadingFieldsData: func,
   selectedSources: arrayOf(string),
 };
 
 ActionButton.defaultProps = {
   handleActionButtonClick: () => {},
   selectedSources: [],
+  loadingFieldsData: false,
 };
 
 export default ActionButton;

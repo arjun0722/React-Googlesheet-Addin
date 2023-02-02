@@ -309,6 +309,7 @@ function DataSelectionMenu() {
           )}
 
           <ActionButton
+            loadingFieldsData={loadingFieldsData}
             selectedSources={selectedSources}
             handleActionButtonClick={handleActionButtonClick}
           />
