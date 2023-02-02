@@ -17,9 +17,10 @@ function SourceTableSelection({
   handleSourceTableSelection,
 }) {
   const showOptionsWithLabels = (param) => {
-    if (param.data.tableType && param.data.tableType !== TABLE_TYPES.SOURCE) {
-      const label =
-        param.data.labelName || TABLE_TYPE_LABELS[param?.data?.tableType]?.name;
+    const { tableType, labelName } = param?.data || {};
+
+    if (tableType && tableType !== TABLE_TYPES.SOURCE) {
+      const label = labelName || TABLE_TYPE_LABELS[tableType]?.name;
 
       if (label) {
         return (

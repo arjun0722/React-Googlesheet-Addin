@@ -4,7 +4,7 @@ import { bool, array, func } from 'prop-types';
 import {
   BUTTON_ACTION,
   CONSTANT_TEXT,
-  BUTTON_DROPDOWN_MESSAGES,
+  NOTIFICATIONS_MESSAGES,
   MAXIMUM_NUMBER_TO_DISABLE_BUTTON,
 } from '../../Config/constant';
 
@@ -34,7 +34,7 @@ function RefreshOptionDropdown({
     };
   });
 
-  const { MESSAGE_FOR_DUMP_SOURCE_TABLE } = BUTTON_DROPDOWN_MESSAGES;
+  const { MESSAGE_FOR_DUMP_SOURCE_TABLE } = NOTIFICATIONS_MESSAGES;
 
   return (
     <label className="dropdown" ref={ref}>

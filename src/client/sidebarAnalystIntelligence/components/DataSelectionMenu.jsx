@@ -155,6 +155,54 @@ function DataSelectionMenu() {
   };
 
   /**
+   * handle Save Data
+   *
+   */
+  const handleSaveData = async () => {
+    setLoadingScreenView(true);
+    setProgressBarCustomMessage(
+      PROGRESS_BAR_MESSAGE_ACCORDING_TO_ACTION.MAP_DATA
+    );
+
+    await mappedContentToTheCellComment(
+      getCommentAfterAddingPrefixAndConvertingTheContentIntoString(
+        selectedSource,
+        selectedFields,
+        downloadedTableData
+      )
+    );
+
+    setProgressBarCustomMessage('');
+    setLoadingScreenView(false);
+  };
+
+  /**
+   * handle Save Data
+   *
+   */
+  const deleteMappedComments = async () => {
+    setLoadingScreenView(true);
+    setProgressBarCustomMessage(
+      PROGRESS_BAR_MESSAGE_ACCORDING_TO_ACTION.DELETE_COMMENT
+    );
+
+    await deleteSelectedRangeComments();
+
+    setProgressBarCustomMessage('');
+    setLoadingScreenView(false);
+  };
+
+  /**
+   * handle Refresh Data
+   *
+   */
+  const refreshSelectedRangeData = async () => {
+    setLoadingScreenView(true);
+    await refreshTheData();
+    setLoadingScreenView(false);
+  };
+
+  /**
    * handle action button click and perform operations according to key
    *
    * @param {String} actionName
@@ -166,27 +214,11 @@ function DataSelectionMenu() {
 
     switch (actionName) {
       case REFRESH_DATA:
-        setLoadingScreenView(true);
-        await refreshTheData();
-        setLoadingScreenView(false);
+        refreshSelectedRangeData();
         break;
 
       case SAVE_DATA:
-        setLoadingScreenView(true);
-        setProgressBarCustomMessage(
-          PROGRESS_BAR_MESSAGE_ACCORDING_TO_ACTION.MAP_DATA
-        );
-
-        await mappedContentToTheCellComment(
-          getCommentAfterAddingPrefixAndConvertingTheContentIntoString(
-            selectedSource,
-            selectedFields,
-            downloadedTableData
-          )
-        );
-
-        setProgressBarCustomMessage('');
-        setLoadingScreenView(false);
+        handleSaveData();
 
         break;
 
@@ -195,16 +227,7 @@ function DataSelectionMenu() {
         break;
 
       case DELETE_COMMENTS:
-        setLoadingScreenView(true);
-        setProgressBarCustomMessage(
-          PROGRESS_BAR_MESSAGE_ACCORDING_TO_ACTION.DELETE_COMMENT
-        );
-
-        await deleteSelectedRangeComments();
-
-        setProgressBarCustomMessage('');
-        setLoadingScreenView(false);
-
+        deleteMappedComments();
         break;
 
       default:

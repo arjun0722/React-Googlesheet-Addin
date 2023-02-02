@@ -9,7 +9,7 @@ import './index.css';
 
 function AnalystIntelligence() {
   const [errorMessage, setErrorMessage] = useState('');
-  const [realod, setReload] = useState(false);
+  const [reload, setReload] = useState(false);
 
   const [loginAccessToken, setLoginAccessToken] = useState(
     localStorage.getItem(TOKEN_KEY)
@@ -23,7 +23,7 @@ function AnalystIntelligence() {
         setLoginAccessToken={setLoginAccessToken}
       />
 
-      {realod ? (
+      {reload ? (
         <></>
       ) : (
         <div className="main-section">

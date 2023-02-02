@@ -164,7 +164,6 @@ function DownloadTableColumnSelectionModal({
                           <input
                             type="checkbox"
                             className="form-check-input"
-                            id="check1"
                             name="option1"
                             checked={columns.includes(name)}
                             value="something"
@@ -189,7 +188,6 @@ function DownloadTableColumnSelectionModal({
                     <input
                       type="checkbox"
                       className="form-check-input"
-                      id="check1"
                       checked={isFieldsFilterApplied}
                       name="option1"
                       value="something"

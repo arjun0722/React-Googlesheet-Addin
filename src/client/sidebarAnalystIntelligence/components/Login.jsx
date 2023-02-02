@@ -2,7 +2,11 @@ import { func } from 'prop-types';
 import React, { useState } from 'react';
 
 import { ADD_ONS_APIS } from '../Config/api';
-import { TOKEN_KEY } from '../Config/constant';
+import {
+  NOTIFICATIONS_MESSAGES,
+  STATUS_CODE_FOR_UNPROCESSABLE_ENTITY,
+  TOKEN_KEY,
+} from '../Config/constant';
 import { httpPost } from '../Utils/http';
 
 function Login({ setLoginAccessToken }) {
@@ -22,7 +26,7 @@ function Login({ setLoginAccessToken }) {
       email?.length === 0 ||
       password?.length === 0
     ) {
-      setError('Please enter in both and email and password.');
+      setError(NOTIFICATIONS_MESSAGES.REQUIRED_FIELDS_FOR_LOGIN);
       return;
     }
 
@@ -34,9 +38,9 @@ function Login({ setLoginAccessToken }) {
 
       const response = await httpPost(ADD_ONS_APIS.LOGIN_API, params);
 
-      if (response?.response?.status === 422) {
+      if (response?.response?.status === STATUS_CODE_FOR_UNPROCESSABLE_ENTITY) {
         setError(
-          response?.response?.message ?? 'Login failed. Please try again later.'
+          response?.response?.message ?? NOTIFICATIONS_MESSAGES.LOGIN_FAILED
         );
 
         return;
@@ -46,7 +50,7 @@ function Login({ setLoginAccessToken }) {
       document.getElementById('close-login-modal').click();
       setLoginAccessToken(response?.access_token);
     } catch (error) {
-      setError('Login failed. Please try again later.');
+      setError(NOTIFICATIONS_MESSAGES.LOGIN_FAILED);
       setLoginAccessToken(null);
       localStorage.removeItem(TOKEN_KEY);
     }
@@ -122,7 +126,6 @@ function Login({ setLoginAccessToken }) {
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    id="check1"
                     name="option1"
                     value="something"
                     onClick={() => {

@@ -6,7 +6,11 @@ export const BUTTON_ACTION = {
   DELETE_COMMENTS: 'DELETE_COMMENTS',
 };
 
-export const BUTTON_DROPDOWN_MESSAGES = {
+export const NOTIFICATIONS_MESSAGES = {
+  REQUIRED_FIELDS_FOR_LOGIN: 'Please enter in both and email and password.',
+
+  LOGIN_FAILED: 'Login failed. Please try again later.',
+
   MESSAGE_FOR_DUMP_SOURCE_TABLE:
     'Exports all rows of the table directly into sheet',
 
@@ -118,3 +122,5 @@ export const TOTAL_PERCENTAGE_OF_SCREEN = 100;
 export const LIMIT_TO_UPDATE_CELLS_PER_CALL = 4000;
 
 export const MAXIMUM_NUMBER_TO_DISABLE_BUTTON = 1;
+
+export const STATUS_CODE_FOR_UNPROCESSABLE_ENTITY = 422;

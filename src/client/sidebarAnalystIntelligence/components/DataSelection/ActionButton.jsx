@@ -3,7 +3,7 @@ import { arrayOf, func, string } from 'prop-types';
 
 import {
   BUTTON_ACTION,
-  BUTTON_DROPDOWN_MESSAGES,
+  NOTIFICATIONS_MESSAGES,
   CONSTANT_TEXT,
   MAXIMUM_NUMBER_TO_DISABLE_BUTTON,
 } from '../../Config/constant';
@@ -35,7 +35,7 @@ function ActionButton({ handleActionButtonClick, selectedSources }) {
         }
         data-toggle="tooltip"
         data-placement="top"
-        title={BUTTON_DROPDOWN_MESSAGES.MESSAGE_FOR_EXPORT_DATA}
+        title={NOTIFICATIONS_MESSAGES.MESSAGE_FOR_EXPORT_DATA}
       >
         <i className="bi bi-box-arrow-down"></i> {CONSTANT_TEXT.EXPORT_TABLE}
       </button>
@@ -46,7 +46,7 @@ function ActionButton({ handleActionButtonClick, selectedSources }) {
         className="btn btn-outline-danger action-button"
         data-toggle="tooltip"
         data-placement="top"
-        title={BUTTON_DROPDOWN_MESSAGES.MESSAGE_FOR_DELETE_MAPPED_DATA}
+        title={NOTIFICATIONS_MESSAGES.MESSAGE_FOR_DELETE_MAPPED_DATA}
       >
         <i className="bi bi-trash"></i> {CONSTANT_TEXT.DELETE}
       </button>
@@ -57,7 +57,7 @@ function ActionButton({ handleActionButtonClick, selectedSources }) {
         className="btn btn-outline-success action-button"
         data-toggle="tooltip"
         data-placement="top"
-        title={BUTTON_DROPDOWN_MESSAGES.MESSAGE_FOR_SHOW_MAPPING}
+        title={NOTIFICATIONS_MESSAGES.MESSAGE_FOR_SHOW_MAPPING}
       >
         {CONSTANT_TEXT.SHOW_MAPPING}
       </button>

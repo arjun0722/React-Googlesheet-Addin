@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React, { Component } from 'react';
 
 import DropdownTreeSelect from 'react-dropdown-tree-select';
@@ -30,7 +28,7 @@ export default class FieldsDropDownTree extends Component {
     this.props.setLoadingFieldsData(false);
   }
 
-  shouldComponentUpdate = (nextProps, nextState) => {
+  shouldComponentUpdate = () => {
     if (!this.needReRendering) {
       this.needReRendering = true;
 
@@ -58,13 +56,20 @@ export default class FieldsDropDownTree extends Component {
     }
   };
 
-  checkIfDimensionMemberIsCheckedOrNot = (selectedValue, branch) => {
+  /**
+   * check if dimension member is checked or not
+   *
+   * @param {Object} selectedValue
+   * @param {Object} member
+   *
+   */
+  checkIfDimensionMemberIsCheckedOrNot = (selectedValue, member) => {
     return (
       selectedValue?.findIndex(
         (selectedDimension) =>
-          selectedDimension.columnName === branch?.columnName &&
-          selectedDimension.tableName === branch?.tableName &&
-          selectedDimension.dimensionId === branch?.dimension_id
+          selectedDimension.columnName === member?.columnName &&
+          selectedDimension.tableName === member?.tableName &&
+          selectedDimension.dimensionId === member?.dimension_id
       ) !== -1
     );
   };
@@ -106,7 +111,7 @@ export default class FieldsDropDownTree extends Component {
    * @param members
    *
    */
-  getLevelWiseData = (members) => {
+  getLevelData = (members) => {
     const levelWiseData = {};
 
     (members || []).forEach((obj) => {
@@ -143,7 +148,7 @@ export default class FieldsDropDownTree extends Component {
           leaf_column: leafColumn = '',
         } = hierarchy || {};
 
-        const levelWiseData = this.getLevelWiseData(members) || {};
+        const levelWiseData = this.getLevelData(members) || {};
 
         const [rootLevelData = [], ...restMembers] =
           Object.values(levelWiseData) || [];
@@ -182,18 +187,26 @@ export default class FieldsDropDownTree extends Component {
   };
 
   onFieldsDropdownChange = (clickedNode) => {
+    const {
+      tableName,
+      columnName,
+      dimension_id: dimensionId,
+      parent_folder_member_id: parentId,
+    } = clickedNode?.data || {};
+
     const nodeObj = {
-      tableName: clickedNode?.data?.tableName,
-      columnName: clickedNode?.data?.columnName,
-      dimensionId: clickedNode?.data?.dimension_id,
-      parentId: clickedNode?.data?.parent_folder_member_id,
+      tableName,
+      columnName,
+      dimensionId,
+      parentId,
     };
 
-    if (clickedNode.checked)
-      this.props.setSelectedFields((pre) => [...pre, nodeObj]);
+    const { setSelectedFields } = this.props || {};
 
-    if (!clickedNode.checked)
-      this.props.setSelectedFields((pre) => {
+    if (clickedNode?.checked) setSelectedFields((pre) => [...pre, nodeObj]);
+
+    if (!clickedNode?.checked)
+      setSelectedFields((pre) => {
         return pre.filter((field) => {
           if (
             field.columnName === nodeObj?.columnName &&
