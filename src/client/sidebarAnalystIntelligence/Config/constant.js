@@ -26,7 +26,7 @@ export const NOTIFICATIONS_MESSAGES = {
   MESSAGE_FOR_DELETE_MAPPED_DATA: 'Delete mapped data over selected range.',
 
   MESSAGE_FOR_EXPORT_DATA:
-    'we do not delete the prior data before pasting in new data, so if there are less rows in your export then you may want to delete the prior data first',
+    'We do not delete the prior data before pasting in new data, so if there are less rows in your export then you may want to delete the prior data first.',
 
   MESSAGE_FOR_SHOW_MAPPING:
     "Selections below don't change when different cells are selected, so click here to refresh the mappings. We're working with Google on this.",
