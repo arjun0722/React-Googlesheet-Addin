@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../Config/api';
+import { STATUS_CODE } from '../Config/constant';
 import { getUserSession } from './helper';
 
 /**
@@ -68,7 +69,7 @@ const httpHandleError = (error) => {
           showErrorMsg();
           break;
 
-        case 400:
+        case STATUS_CODE.Bad_Request:
           if (err.errors && err.errors[0] && err.errors[0].errors) {
             const newErr = err.errors[0].errors;
             if (newErr[0] && newErr[0].message) {
@@ -82,13 +83,13 @@ const httpHandleError = (error) => {
           }
           break;
 
-        case 401:
+        case STATUS_CODE.Unauthorized:
           showErrorMsg(err.message || 'Session expired.');
           localStorage.clear();
           window.location.reload(); // Reload page
           break;
 
-        case 403:
+        case STATUS_CODE.Forbidden:
           if (err.errors && err.errors[0] && err.errors[0].detail) {
             showErrorMsg(err.errors[0].detail);
           } else {
@@ -96,7 +97,7 @@ const httpHandleError = (error) => {
           }
           break;
 
-        case 404:
+        case STATUS_CODE.Not_Found:
           if (err.errors && err.errors[0] && err.errors[0].title) {
             if (err.errors[0].title !== 'Resource Not Found') {
               showErrorMsg(err.errors[0].title);
@@ -108,22 +109,22 @@ const httpHandleError = (error) => {
           }
           break;
 
-        case 405:
+        case STATUS_CODE.Method_Not_Allowed:
           showErrorMsg(err.message || '');
           break;
 
-        case 412:
+        case STATUS_CODE.Precondition_Failed:
           if (Object.keys(err.errors)[0] === 'q') {
             showErrorMsg();
           } else {
             showErrorMsg(err.errors[Object.keys(err.errors)[0]][0]);
           }
           break;
-        case 409:
+        case STATUS_CODE.Conflict:
           showErrorMsg(err.message);
 
           break;
-        case 422:
+        case STATUS_CODE.Unprocessable_Entity:
           if (typeof err === 'string') {
             showErrorMsg(err);
           } else if (err.errors && err.errors[0] && err.errors[0].detail) {
@@ -141,11 +142,11 @@ const httpHandleError = (error) => {
           }
           break;
 
-        case 502:
+        case STATUS_CODE.Bad_Gateway:
           showErrorMsg();
           break;
 
-        case 503:
+        case STATUS_CODE.Service_Unavailable:
           if (err.error && typeof err.error === 'string') {
             showErrorMsg(err.error);
           } else {

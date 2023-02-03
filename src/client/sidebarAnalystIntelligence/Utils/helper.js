@@ -9,7 +9,7 @@ import {
 } from '../Utils/QueryObject';
 import { serverFunctions } from '../../utils/serverFunctions';
 import {
-  ALTERFLO_CELL_MAP_CONTENT_PREFIX,
+  AIP_CELL_MAP_CONTENT_PREFIX,
   KEYS_FOR_VISIBILITY_FLAG,
   TOKEN_KEY,
   TOTAL_PERCENTAGE_OF_SCREEN,
@@ -258,7 +258,7 @@ export const getCommentAfterAddingPrefixAndConvertingTheContentIntoString = (
   };
 
   const cellDimensionMapSerialized =
-    ALTERFLO_CELL_MAP_CONTENT_PREFIX + JSON.stringify(cellDimensionMap);
+    AIP_CELL_MAP_CONTENT_PREFIX + JSON.stringify(cellDimensionMap);
 
   return cellDimensionMapSerialized;
 };
@@ -277,8 +277,8 @@ export const getCommentAfterRemovingPrefixAndConvertingTheStringIntoObject = (
   let mappedContent = {};
 
   try {
-    if (content.indexOf(ALTERFLO_CELL_MAP_CONTENT_PREFIX) == 0) {
-      content = content.slice(ALTERFLO_CELL_MAP_CONTENT_PREFIX.length);
+    if (content.indexOf(AIP_CELL_MAP_CONTENT_PREFIX) == 0) {
+      content = content.slice(AIP_CELL_MAP_CONTENT_PREFIX.length);
     }
 
     mappedContent = JSON.parse(content);

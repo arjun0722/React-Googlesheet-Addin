@@ -32,7 +32,7 @@ export const NOTIFICATIONS_MESSAGES = {
     "Selections below don't change when different cells are selected, so click here to refresh the mappings. We're working with Google on this.",
 };
 
-export const ALTERFLO_CELL_MAP_CONTENT_PREFIX = 'Alterflo Map:';
+export const AIP_CELL_MAP_CONTENT_PREFIX = 'AIP Map:';
 
 export const PROGRESS_BAR_MESSAGE_ACCORDING_TO_ACTION = {
   LOADING_THE_DATA: 'Loading the data...',
@@ -124,3 +124,16 @@ export const LIMIT_TO_UPDATE_CELLS_PER_CALL = 4000;
 export const MAXIMUM_NUMBER_TO_DISABLE_BUTTON = 1;
 
 export const STATUS_CODE_FOR_UNPROCESSABLE_ENTITY = 422;
+
+export const STATUS_CODE = {
+  Bad_Request: 400,
+  Unauthorized: 401,
+  Forbidden: 403,
+  Not_Found: 404,
+  Method_Not_Allowed: 405,
+  Precondition_Failed: 412,
+  Conflict: 409,
+  Unprocessable_Entity: 422,
+  Bad_Gateway: 502,
+  Service_Unavailable: 503,
+};
