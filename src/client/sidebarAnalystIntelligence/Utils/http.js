@@ -41,7 +41,8 @@ const httpHandleResponse = (res) => {
   // show warning msg in case of status code 202 globally
   const { status = '', data = {} } = res || {};
   const { message = '' } = data || {};
-  if (status === 202 && message) showErrorMsg(message, ' MESSAGE');
+  if (status === STATUS_CODE.Accepted && message)
+    showErrorMsg(message, ' MESSAGE');
 
   return res.data;
 };

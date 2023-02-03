@@ -128,6 +128,7 @@ export const STATUS_CODE_FOR_UNPROCESSABLE_ENTITY = 422;
 export const STATUS_CODE = {
   Bad_Request: 400,
   Unauthorized: 401,
+  Accepted: 202,
   Forbidden: 403,
   Not_Found: 404,
   Method_Not_Allowed: 405,
