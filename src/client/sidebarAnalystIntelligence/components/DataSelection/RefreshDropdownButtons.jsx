@@ -51,7 +51,7 @@ function RefreshOptionDropdown({
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              {CONSTANT_TEXT.DOWNLOAD_TABLE} {''}
+              {CONSTANT_TEXT.DOWNLOAD_TABLE} &nbsp;
               <i
                 className="bi bi-info-circle"
                 data-toggle="tooltip"

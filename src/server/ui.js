@@ -1,5 +1,3 @@
-const { initializeApp } = require('firebase/app');
-
 export const onOpen = () => {
   const menu = SpreadsheetApp.getUi()
     .createMenu('Analyst intelligence Plugin') // edit me!
@@ -10,7 +8,7 @@ export const onOpen = () => {
 
 export const openAboutSidebar = () => {
   const html = HtmlService.createHtmlOutputFromFile(
-    'sidebarAnalystIntelligence'
+    'SidebarAnalystIntelligence'
   ).setTitle('Analyst intelligence');
 
   SpreadsheetApp.getUi().showSidebar(html);

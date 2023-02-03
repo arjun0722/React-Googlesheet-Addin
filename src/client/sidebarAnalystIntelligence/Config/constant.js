@@ -138,3 +138,6 @@ export const STATUS_CODE = {
   Bad_Gateway: 502,
   Service_Unavailable: 503,
 };
+
+export const LOGIN_PAGE_HEADING =
+  'Please enter in your email and password to login.';

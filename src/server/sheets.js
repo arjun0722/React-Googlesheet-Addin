@@ -111,27 +111,25 @@ export const getAllCommentWithAddress = () => {
   const selection = sheet.getSelection();
   const ranges = selection.getActiveRangeList().getRanges();
 
-  const address = [];
+  const addresses = [];
   const comments = [];
 
-  for (let index = 0; index < ranges.length; index++) {
-    const range = sheet.getRange(ranges[index].getA1Notation());
+  ranges.forEach((range) => {
+    const currentRange = sheet.getRange(range.getA1Notation());
+    const results = range.getNotes();
 
-    const results = ranges[index].getNotes();
-
-    for (const i in results) {
-      for (const j in results[i]) {
-        if (results[i][j]) {
-          comments.push(results[i][j]);
-          address.push(
-            range.getCell(Number(i) + 1, Number(j) + 1).getA1Notation()
+    results.forEach((result, i) => {
+      Object.values(result).forEach((value, j) => {
+        if (value) {
+          comments.push(value);
+          addresses.push(
+            currentRange.getCell(Number(i) + 1, Number(j) + 1).getA1Notation()
           );
         }
-      }
-    }
-  }
-
-  return address.map((address, index) => {
+      });
+    });
+  });
+  return addresses.map((address, index) => {
     return { address, comment: comments[index] };
   });
 };

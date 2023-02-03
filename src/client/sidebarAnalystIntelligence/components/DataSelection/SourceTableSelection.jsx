@@ -16,6 +16,35 @@ function SourceTableSelection({
   selectedSource,
   handleSourceTableSelection,
 }) {
+  /**
+   * get styles according to label
+   *
+   * @param {Object} param
+   *
+   */
+  const getStylesAccordingToLabel = (param) => {
+    return {
+      color:
+        param.data.tableType === TABLE_TYPES.SCENARIO
+          ? TABLE_TYPE_LABELS[param.data.tableType]?.color[
+              param.data.labelName
+            ] || TABLE_TYPE_LABELS[param.data.tableType]?.color.others
+          : TABLE_TYPE_LABELS[param.data.tableType]?.color,
+      backgroundColor:
+        param.data.tableType === TABLE_TYPES.SCENARIO
+          ? TABLE_TYPE_LABELS[param.data.tableType]?.backgroundColor[
+              param.data.labelName
+            ] || TABLE_TYPE_LABELS[param.data.tableType]?.backgroundColor.others
+          : TABLE_TYPE_LABELS[param.data.tableType]?.backgroundColor,
+      border: TABLE_TYPE_LABELS[param.data.tableType]?.border,
+    };
+  };
+
+  /**
+   *
+   * Show Option with labels
+   *
+   */
   const showOptionsWithLabels = (param) => {
     const { tableType, labelName } = param?.data || {};
 
@@ -33,24 +62,7 @@ function SourceTableSelection({
               {param.data.label} -
               <span
                 className="label-text"
-                style={{
-                  color:
-                    param.data.tableType === TABLE_TYPES.SCENARIO
-                      ? TABLE_TYPE_LABELS[param.data.tableType]?.color[
-                          param.data.labelName
-                        ] ||
-                        TABLE_TYPE_LABELS[param.data.tableType]?.color.others
-                      : TABLE_TYPE_LABELS[param.data.tableType]?.color,
-                  backgroundColor:
-                    param.data.tableType === TABLE_TYPES.SCENARIO
-                      ? TABLE_TYPE_LABELS[param.data.tableType]
-                          ?.backgroundColor[param.data.labelName] ||
-                        TABLE_TYPE_LABELS[param.data.tableType]?.backgroundColor
-                          .others
-                      : TABLE_TYPE_LABELS[param.data.tableType]
-                          ?.backgroundColor,
-                  border: TABLE_TYPE_LABELS[param.data.tableType]?.border,
-                }}
+                style={getStylesAccordingToLabel(param)}
               >
                 {label}
               </span>

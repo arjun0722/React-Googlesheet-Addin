@@ -1,16 +1,11 @@
-/* eslint-disable */
 import eachLimit from 'async/eachLimit';
 
 import { ADD_ONS_APIS } from '../Config/api';
 import { httpGet } from './http';
-import {
-  getQueryObject,
-  getQueryObjectForGettingTableData,
-} from '../Utils/QueryObject';
+
 import { serverFunctions } from '../../utils/serverFunctions';
 import {
   AIP_CELL_MAP_CONTENT_PREFIX,
-  KEYS_FOR_VISIBILITY_FLAG,
   TOKEN_KEY,
   TOTAL_PERCENTAGE_OF_SCREEN,
   REACT_TREE_DROPDOWN_INPUT_CLASS_NAME,
@@ -20,6 +15,10 @@ import {
   MINIMUM_HEIGHT_PERCENTAGE_FOR_TIME_PERIOD_DROPDOWN,
   LIMIT_TO_UPDATE_CELLS_PER_CALL,
 } from '../Config/constant';
+import {
+  getQueryObject,
+  getQueryObjectForGettingTableData,
+} from './QueryObject';
 
 /**
  * Convert row character into number

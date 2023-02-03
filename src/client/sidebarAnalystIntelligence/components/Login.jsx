@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import { ADD_ONS_APIS } from '../Config/api';
 import {
+  LOGIN_PAGE_HEADING,
   NOTIFICATIONS_MESSAGES,
   STATUS_CODE_FOR_UNPROCESSABLE_ENTITY,
   TOKEN_KEY,
@@ -80,13 +81,11 @@ function Login({ setLoginAccessToken }) {
           <div className="modal-body">
             <>
               <div>
-                <p id="info-heading">
-                  Please enter in your email and password to login.
-                </p>
+                <p id="info-heading">{LOGIN_PAGE_HEADING}</p>
               </div>
 
               {errorMessage && (
-                <span style={{ color: 'red' }}> {errorMessage} </span>
+                <span className="color-red"> {errorMessage} </span>
               )}
 
               <div id="main-form">
@@ -97,7 +96,6 @@ function Login({ setLoginAccessToken }) {
                     onChange={({ target }) => setEmail(target.value)}
                     className="form-control"
                     value={email}
-                    id="usr"
                   />
                 </div>
                 <div className="form-group postion-relative">
@@ -107,7 +105,6 @@ function Login({ setLoginAccessToken }) {
                     onChange={({ target }) => setPassword(target.value)}
                     className="form-control"
                     value={password}
-                    id="pwd"
                   />
 
                   {showPassword ? (

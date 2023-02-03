@@ -46,9 +46,9 @@ const devDialogEntry = './dev/index.js';
 const clientEntrypoints = [
   {
     name: 'CLIENT - Sidebar About Page',
-    entry: './src/client/sidebarAnalystIntelligence/index.js',
-    filename: 'sidebarAnalystIntelligence',
-    template: './src/client/sidebarAnalystIntelligence/index.html',
+    entry: './src/client/SidebarAnalystIntelligence/index.js',
+    filename: 'SidebarAnalystIntelligence',
+    template: './src/client/SidebarAnalystIntelligence/index.html',
   },
 ];
 
