@@ -8,7 +8,7 @@ function DownloadTableColumnSelectionModal({
   downloadedTableData,
   handleDownloadSourceTable,
 }) {
-  const [{ table_columns: tableColumnsList }] = fields;
+  const [{ table_columns: tableColumnsList = [] }] = fields;
 
   const [columns, setColumns] = useState(
     downloadedTableData?.tableColumns || []
@@ -21,7 +21,14 @@ function DownloadTableColumnSelectionModal({
   );
 
   const [searchedTableColumnValue, setSearchTableColumnValue] = useState('');
-  const [isSelectAllToggleButton, setIsSelectAllToggleButton] = useState(true);
+  const [isSelectAllToggleButton, setIsSelectAllToggleButton] = useState(
+    Object.keys(downloadedTableData || {}).length
+      ? downloadedTableData?.tableColumns.length ===
+          tableColumnsList.filter((item) => {
+            return item.visibility === KEYS_FOR_VISIBILITY_FLAG.SHOW;
+          }).length
+      : true
+  );
 
   /**
    * handle download button click
