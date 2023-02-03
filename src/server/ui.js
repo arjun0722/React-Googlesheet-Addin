@@ -8,7 +8,7 @@ export const onOpen = () => {
 
 export const openAboutSidebar = () => {
   const html = HtmlService.createHtmlOutputFromFile(
-    'SidebarAnalystIntelligence'
+    'SidebarMenuAnalystIntelligence'
   ).setTitle('Analyst intelligence');
 
   SpreadsheetApp.getUi().showSidebar(html);

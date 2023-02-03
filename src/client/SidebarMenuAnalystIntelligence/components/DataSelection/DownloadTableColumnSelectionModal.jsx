@@ -137,10 +137,8 @@ function DownloadTableColumnSelectionModal({
               <hr />
               <div className="form-group">
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
                   onChange={handleTableColumnSearch}
                   value={searchedTableColumnValue}
                   placeholder="Search Table column"
