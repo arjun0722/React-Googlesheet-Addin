@@ -20,15 +20,26 @@ function DownloadTableColumnSelectionModal({
       : true
   );
 
-  const [searchedTableColumnValue, setSearchTableColumnValue] = useState('');
-  const [isSelectAllToggleButton, setIsSelectAllToggleButton] = useState(
-    Object.keys(downloadedTableData || {}).length
+  /**
+   * set select all table state according to mappoing
+   */
+  const setAllTableAccordingToDownload = () => {
+    return Object.keys(downloadedTableData || {}).length
       ? downloadedTableData?.tableColumns.length ===
           tableColumnsList.filter((item) => {
             return item.visibility === KEYS_FOR_VISIBILITY_FLAG.SHOW;
           }).length
-      : true
+      : true;
+  };
+
+  const [searchedTableColumnValue, setSearchTableColumnValue] = useState('');
+  const [isSelectAllToggleButton, setIsSelectAllToggleButton] = useState(
+    setAllTableAccordingToDownload()
   );
+
+  useEffect(() => {
+    setIsSelectAllToggleButton(setAllTableAccordingToDownload());
+  }, [fields]);
 
   /**
    * handle download button click
