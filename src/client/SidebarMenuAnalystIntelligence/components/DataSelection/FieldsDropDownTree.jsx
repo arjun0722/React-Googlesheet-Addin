@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { arrayOf, bool, func, shape } from 'prop-types';
 
 import DropdownTreeSelect from 'react-dropdown-tree-select';
 
 import { CONSTANT_TEXT, PLACEHOLDER_VALUES } from '../../Config/constant';
 import ProgressIndicatorBar from '../SharedComponenet/ProgressIndicatorBar';
+import { setHeightOfTheDropDownAccordingToScreenSize } from '../../Utils/helper';
 
 import 'react-dropdown-tree-select/dist/styles.css';
 import '../ReactDropdown.css';
-import { setHeightOfTheDropDownAccordingToScreenSize } from '../../Utils/helper';
 
 export default class FieldsDropDownTree extends Component {
   needReRendering = true;
@@ -18,12 +19,11 @@ export default class FieldsDropDownTree extends Component {
   }
 
   componentDidMount() {
-    const dropdownTreeViewMasterList = (this.props?.fields || []).map(
-      (data = []) => {
+    const dropdownTreeViewMasterList = (this.props?.fields || [])
+      .map((data = []) => {
         return this.createFieldsTree(data);
-      }
-    );
-
+      })
+      .filter((arr) => arr);
     this.setState({ filedsTree: dropdownTreeViewMasterList });
     this.props.setLoadingFieldsData(false);
   }
@@ -45,11 +45,11 @@ export default class FieldsDropDownTree extends Component {
       JSON.stringify(nextProps?.selectedFields) !==
         JSON.stringify(this.props?.selectedFields)
     ) {
-      const dropdownTreeViewMasterList = (nextProps?.fields || []).map(
-        (data = []) => {
+      const dropdownTreeViewMasterList = (nextProps?.fields || [])
+        .map((data = []) => {
           return this.createFieldsTree(data);
-        }
-      );
+        })
+        .filter((arr) => arr);
 
       this.setState({ filedsTree: dropdownTreeViewMasterList });
       this.props.setLoadingFieldsData(false);
@@ -226,7 +226,7 @@ export default class FieldsDropDownTree extends Component {
     return (
       <div className="field-dropdown-section">
         {this.props.loadingFieldsData ? (
-          <ProgressIndicatorBar message={this.props.progressBarCustomMessage} />
+          <ProgressIndicatorBar />
         ) : (
           <>
             <label className="dropdown-labels">{CONSTANT_TEXT.FIELDS}</label>
@@ -245,3 +245,19 @@ export default class FieldsDropDownTree extends Component {
     );
   }
 }
+
+FieldsDropDownTree.propTypes = {
+  fields: arrayOf(shape({})),
+  selectedFields: arrayOf(shape({})),
+  loadingFieldsData: bool,
+  setSelectedFields: func,
+  setLoadingFieldsData: func,
+};
+
+FieldsDropDownTree.defaultProps = {
+  fields: [{}],
+  selectedFields: [],
+  loadingFieldsData: false,
+  setSelectedFields: () => {},
+  setLoadingFieldsData: () => {},
+};

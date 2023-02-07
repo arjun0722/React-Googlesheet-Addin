@@ -1,9 +1,9 @@
 const BASE_URLS = {
-  staging: 'https://api.staging.alterflo.com/api',
+  staging: 'https://api.staging.dev-openfpa.com/api',
   production: 'https://api.openfpa.com/api',
 };
 
-const API_BASE_URL = BASE_URLS.production;
+const API_BASE_URL = BASE_URLS.staging;
 
 const ADD_ONS_APIS = {
   DIMENSIONS_API: {
