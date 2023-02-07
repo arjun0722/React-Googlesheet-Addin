@@ -1,5 +1,5 @@
 const BASE_URLS = {
-  staging: 'https://api.staging.alterflo.com/api',
+  staging: 'https://api.staging.dev-openfpa.com/api',
   production: 'https://api.openfpa.com/api',
 };
 
