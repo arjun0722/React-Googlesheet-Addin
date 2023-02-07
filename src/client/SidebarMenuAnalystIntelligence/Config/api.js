@@ -3,7 +3,7 @@ const BASE_URLS = {
   production: 'https://api.openfpa.com/api',
 };
 
-const API_BASE_URL = BASE_URLS.staging;
+const API_BASE_URL = BASE_URLS.production;
 
 const ADD_ONS_APIS = {
   DIMENSIONS_API: {
