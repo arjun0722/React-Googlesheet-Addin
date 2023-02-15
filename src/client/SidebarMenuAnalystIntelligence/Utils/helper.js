@@ -14,6 +14,7 @@ import {
   REACT_TREE_DROPDOWN_CONTENT_CLASS_NAME,
   MINIMUM_HEIGHT_PERCENTAGE_FOR_TIME_PERIOD_DROPDOWN,
   LIMIT_TO_UPDATE_CELLS_PER_CALL,
+  PROGRESS_BAR_MESSAGE_ACCORDING_TO_ACTION,
 } from '../Config/constant';
 import {
   getQueryObject,
@@ -111,12 +112,17 @@ export const getSourceTableData = async (mappedData) => {
  */
 export const downloadAndRenderDataOnActiveCell = async (
   mappedData,
-  cellAddress = ''
+  cellAddress = '',
+  setProgressBarCustomMessage
 ) => {
   try {
     const tableData = await getSourceTableData(mappedData);
 
     if (!tableData) return Promise.reject();
+
+    setProgressBarCustomMessage(
+      PROGRESS_BAR_MESSAGE_ACCORDING_TO_ACTION?.RENDERING_DATA
+    );
 
     const activeCellAddress = await serverFunctions.getActiveRange();
 
@@ -124,6 +130,8 @@ export const downloadAndRenderDataOnActiveCell = async (
       tableData,
       cellAddress || activeCellAddress
     );
+
+    setProgressBarCustomMessage('');
 
     return false;
   } catch (error) {
@@ -201,7 +209,7 @@ const mapSourceTableDataToTheCells = async (data, startingAddress) => {
   );
 
   try {
-    const updateTheValuesToTheCells = async (row, resolved) => {
+    const updateTheValuesToTheCells = async (row) => {
       await serverFunctions.dumpTableData(row.value, row.address);
     };
 

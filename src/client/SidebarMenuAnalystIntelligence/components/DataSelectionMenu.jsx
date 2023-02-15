@@ -255,11 +255,15 @@ function DataSelectionMenu() {
         )
       );
 
-      await downloadAndRenderDataOnActiveCell({
-        source: selectedSource,
-        selectedFields,
-        downloadTableData: { isFilterApplied: applyFilters, tableColumns },
-      });
+      await downloadAndRenderDataOnActiveCell(
+        {
+          source: selectedSource,
+          selectedFields,
+          downloadTableData: { isFilterApplied: applyFilters, tableColumns },
+        },
+        '',
+        setProgressBarCustomMessage
+      );
 
       setLoadingScreenView(false);
     } catch (error) {
@@ -309,8 +313,8 @@ function DataSelectionMenu() {
           )}
 
           <ActionButton
-            loadingFieldsData={loadingFieldsData}
             selectedSources={selectedSources}
+            loadingFieldsData={loadingFieldsData}
             handleActionButtonClick={handleActionButtonClick}
           />
 

@@ -39,6 +39,8 @@ export const PROGRESS_BAR_MESSAGE_ACCORDING_TO_ACTION = {
   MAP_DATA: 'Mapping the data...',
   DELETE_COMMENT: 'Deleting the comments...',
   LOADING_SOURCE_TABLES_FIELDS: 'Loading source table fields...',
+  RENDERING_DATA:
+    'Data is downloaded. Awaiting Google Sheets to render the data…',
 };
 
 export const KEYS_FOR_VISIBILITY_FLAG = {
